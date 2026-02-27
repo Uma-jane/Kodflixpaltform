@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState } from 'react'
 import type { Movie } from '../services/tmdb'
 import { getImageUrl, getMovieTitle, IMAGE_SIZES } from '../services/tmdb'
 import './Hero.css'
@@ -9,7 +9,6 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ movie }) => {
   const [isTruncated, setIsTruncated] = useState(true)
-  const [showVideo, setShowVideo] = useState(false)
 
   const title = getMovieTitle(movie)
   const backdropUrl = getImageUrl(movie.backdrop_path, IMAGE_SIZES.original)
@@ -20,13 +19,7 @@ const Hero: React.FC<HeroProps> = ({ movie }) => {
     return text.substring(0, maxLength).trim() + '...'
   }
 
-  useEffect(() => {
-    // Simulate video preview after 2 seconds (like Netflix)
-    const timer = setTimeout(() => {
-      setShowVideo(true)
-    }, 2000)
-    return () => clearTimeout(timer)
-  }, [])
+
 
   return (
     <div className="hero" style={{ backgroundImage: `url(${backdropUrl})` }}>
