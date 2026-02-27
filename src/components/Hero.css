@@ -1,0 +1,165 @@
+.hero {
+  position: relative;
+  height: 80vh;
+  min-height: 600px;
+  max-height: 900px;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: flex-end;
+}
+
+.hero-gradient-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.hero-gradient-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(to top, #141414 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  padding: 0 4%;
+  padding-bottom: 150px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.hero-title {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  line-height: 1.1;
+}
+
+.hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 16px;
+  font-size: 16px;
+}
+
+.hero-rating {
+  color: #46d369;
+  font-weight: 600;
+}
+
+.hero-year {
+  color: #a3a3a3;
+}
+
+.hero-description {
+  font-size: 18px;
+  line-height: 1.5;
+  color: #fff;
+  margin-bottom: 24px;
+  max-width: 600px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.more-info-btn {
+  background: none;
+  border: none;
+  color: #a3a3a3;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 5px;
+  text-decoration: underline;
+}
+
+.more-info-btn:hover {
+  color: #fff;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.hero-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 24px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hero-btn-play {
+  background-color: #fff;
+  color: #000;
+}
+
+.hero-btn-play:hover {
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.hero-btn-more {
+  background-color: rgba(109, 109, 110, 0.7);
+  color: #fff;
+}
+
+.hero-btn-more:hover {
+  background-color: rgba(109, 109, 110, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .hero {
+    height: 70vh;
+    min-height: 500px;
+  }
+  
+  .hero-title {
+    font-size: 36px;
+  }
+  
+  .hero-description {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: 60vh;
+    min-height: 450px;
+  }
+  
+  .hero-content {
+    padding-bottom: 100px;
+  }
+  
+  .hero-title {
+    font-size: 28px;
+  }
+  
+  .hero-description {
+    font-size: 14px;
+    max-width: 100%;
+  }
+  
+  .hero-btn {
+    padding: 6px 16px;
+    font-size: 14px;
+  }
+}
