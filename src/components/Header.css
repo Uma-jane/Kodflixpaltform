@@ -73,21 +73,59 @@
   align-items: center;
   gap: 8px;
   cursor: pointer;
+  position: relative;
 }
 
 .profile-avatar {
   width: 32px;
   height: 32px;
   border-radius: 4px;
-  overflow: hidden;
+  background: #e50914;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-.dropdown-arrow {
-  transition: transform 0.2s ease;
+.dropdown-menu {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 10px;
+  display: none;
+  min-width: 150px;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.header-profile:hover .dropdown-arrow {
-  transform: rotate(180deg);
+.header-profile:hover .dropdown-menu {
+  display: flex;
+}
+
+.user-name {
+  color: #fff;
+  font-size: 14px;
+  padding: 5px;
+  border-bottom: 1px solid #333;
+}
+
+.logout-btn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 5px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.logout-btn:hover {
+  text-decoration: underline;
 }
 
 /* Responsive */

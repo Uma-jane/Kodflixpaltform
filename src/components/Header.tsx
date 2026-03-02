@@ -1,7 +1,20 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import './Header.css'
 
-const Header: React.FC = () => {
+interface User {
+  id: number;
+  full_name: string;
+  username: string;
+  email: string;
+  role: string;
+}
+
+interface HeaderProps {
+  user: User | null;
+  onLogout: () => Promise<void>;
+}
+
+const Header: React.FC<HeaderProps> = ({ user, onLogout }) => {
   const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
@@ -38,16 +51,11 @@ const Header: React.FC = () => {
         </div>
         <div className="header-profile">
           <div className="profile-avatar">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="32" height="32" rx="4" fill="#333"/>
-              <path d="M16 16C18.2091 16 20 14.2091 20 12C20 9.79086 18.2091 8 16 8C13.7909 8 12 9.79086 12 12C12 14.2091 13.7909 16 16 16Z" fill="#666"/>
-              <path d="M8 24C8 19.5817 11.5817 16 16 16C20.4183 16 24 19.5817 24 24" stroke="#666" strokeWidth="2" strokeLinecap="round"/>
-            </svg>
+            <span>{user?.username?.charAt(0).toUpperCase() || 'U'}</span>
           </div>
-          <div className="dropdown-arrow">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M4 6L8 10L12 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
+          <div className="dropdown-menu">
+            <span className="user-name">{user?.full_name}</span>
+            <button className="logout-btn" onClick={onLogout}>Logout</button>
           </div>
         </div>
       </div>

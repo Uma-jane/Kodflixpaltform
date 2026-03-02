@@ -1,13 +1,23 @@
-import React, { useRef, useState } from 'react'
-import type { Movie } from '../services/tmdb'
-import { getImageUrl, getMovieTitle, IMAGE_SIZES } from '../services/tmdb'
+import { useRef, useState } from 'react'
 import './MovieRow.css'
+
+interface Movie {
+  id: number;
+  title?: string;
+  name?: string;
+  overview: string;
+  backdrop_path: string;
+  poster_path: string;
+  vote_average: number;
+}
 
 interface MovieRowProps {
   title: string
   movies: Movie[]
   isLargeRow?: boolean
 }
+
+const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p'
 
 const MovieRow: React.FC<MovieRowProps> = ({ title, movies, isLargeRow = false }) => {
   const rowRef = useRef<HTMLDivElement>(null)
@@ -29,6 +39,14 @@ const MovieRow: React.FC<MovieRowProps> = ({ title, movies, isLargeRow = false }
     }
   }
 
+  const getImageUrl = (path: string, size: string = 'w500'): string => {
+    return `${IMAGE_BASE_URL}/${size}${path}`
+  }
+
+  const getMovieTitle = (movie: Movie): string => {
+    return movie.title || movie.name || 'Unknown'
+  }
+
   return (
     <div className="movie-row">
       <h2 className="row-title">{title}</h2>
@@ -45,10 +63,7 @@ const MovieRow: React.FC<MovieRowProps> = ({ title, movies, isLargeRow = false }
         <div className="row-posters" ref={rowRef}>
           {movies.map((movie) => {
             const imagePath = isLargeRow ? movie.poster_path : movie.backdrop_path
-            const imageUrl = getImageUrl(
-              imagePath, 
-              isLargeRow ? IMAGE_SIZES.large : IMAGE_SIZES.medium
-            )
+            const imageUrl = getImageUrl(imagePath, isLargeRow ? 'w500' : 'w300')
             
             if (!imagePath) return null
             

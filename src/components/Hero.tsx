@@ -1,17 +1,28 @@
 import { useState } from 'react'
-import type { Movie } from '../services/tmdb'
-import { getImageUrl, getMovieTitle, IMAGE_SIZES } from '../services/tmdb'
 import './Hero.css'
 
-interface HeroProps {
-  movie: Movie
+interface Movie {
+  id: number;
+  title?: string;
+  name?: string;
+  overview: string;
+  backdrop_path: string;
+  poster_path: string;
+  vote_average: number;
+  release_date?: string;
+  first_air_date?: string;
 }
 
-const Hero: React.FC<HeroProps> = ({ movie }) => {
+interface HeroProps {
+  movie: Movie;
+  backdropUrl: string;
+}
+
+const Hero: React.FC<HeroProps> = ({ movie, backdropUrl }) => {
   const [isTruncated, setIsTruncated] = useState(true)
 
-  const title = getMovieTitle(movie)
-  const backdropUrl = getImageUrl(movie.backdrop_path, IMAGE_SIZES.original)
+  const title = movie.title || movie.name || 'Unknown'
+  const year = movie.release_date?.substring(0, 4) || movie.first_air_date?.substring(0, 4) || '2024'
   
   // Truncate overview to 150 characters
   const truncateOverview = (text: string, maxLength: number = 150): string => {
@@ -32,9 +43,7 @@ const Hero: React.FC<HeroProps> = ({ movie }) => {
           
           <div className="hero-meta">
             <span className="hero-rating">{Math.round(movie.vote_average * 10)}% Match</span>
-            <span className="hero-year">
-              {movie.first_air_date?.substring(0, 4) || movie.release_date?.substring(0, 4) || '2024'}
-            </span>
+            <span className="hero-year">{year}</span>
           </div>
           
           <p className="hero-description">
